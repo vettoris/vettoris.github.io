@@ -438,3 +438,9 @@ footer {
 }
 
 .topic-figure { margin: 0; }
+
+.research-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.expand-topics { font: inherit; font-size: .9rem; font-weight: 500; color: var(--accent-color); background: none; border: 0; padding: .4rem 0 .4rem .5rem; cursor: pointer; white-space: nowrap; }
+.expand-topics:hover { text-decoration: underline; }
+.expand-topics:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 3px; }
+.expand-topics[hidden] { display: none; }

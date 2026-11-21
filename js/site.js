@@ -12,6 +12,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+  const research = document.getElementById('research');
+  const expandTopics = research && research.querySelector('.expand-topics');
+  if (expandTopics) {
+    const topics = Array.from(research.querySelectorAll('details.topic'));
+    function updateExpandButton() {
+      const allOpen = topics.every(topic => topic.open);
+      expandTopics.textContent = allOpen ? 'Collapse all' : 'Expand all';
+    }
+    topics.forEach(topic => topic.addEventListener('toggle', updateExpandButton));
+    expandTopics.addEventListener('click', () => {
+      const shouldOpen = !topics.every(topic => topic.open);
+      topics.forEach(topic => { topic.open = shouldOpen; });
+      updateExpandButton();
+    });
+    if (topics.length) { expandTopics.hidden = false; updateExpandButton(); }
+  }
+
   const typedTextElement = document.getElementById('typed-text');
   if (typedTextElement) {
     const typedPhrases = [
