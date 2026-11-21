@@ -1,0 +1,430 @@
+/* ---------- Tokens ---------- */
+:root {
+    --primary-color: #08263f;
+    --accent-color: #1f6feb;
+    --text-color: #2a2a2a;
+    --muted-color: #6a6a6a;
+    --light-bg: #fafafa;
+    --light-text: #f5f5f5;
+    --rule: #ececec;
+    --section-padding: 44px;
+    --font-body: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-head: 'Roboto Slab', Georgia, serif;
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6, .logo {
+    font-family: var(--font-head);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    color: var(--text-color);
+    background-color: #ffffff;
+    padding-top: 56px; /* offset for fixed navbar */
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+a { color: var(--accent-color); }
+.accent { color: var(--accent-color); font-weight: 500; font-style: normal; }
+
+/* ---------- Navbar ---------- */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    width: 100%;
+    background-color: #ffffff;
+    color: var(--primary-color);
+    z-index: 1100;
+    box-shadow: 0 1px 0 var(--rule);
+}
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+.logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+.nav-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+    color: var(--accent-color);
+}
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+/* ---------- Hero ---------- */
+.hero-section {
+    background: #ffffff;
+    padding: 18px 0 8px;
+    color: var(--primary-color);
+    /* defensive: never inherit any leftover flex/height that would center vertically */
+    display: block;
+    height: auto;
+    min-height: 0;
+}
+.hero-content { padding-top: 0; }
+.hero-top {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+}
+.profile-pic-wrap {
+    width: 150px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex: 0 0 150px;
+    box-shadow: 0 6px 18px rgba(8,38,63,0.08);
+    border: 1px solid var(--rule);
+    animation: picIn 700ms ease both;
+    background: var(--light-bg);
+}
+.profile-pic { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
+@keyframes picIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}
+.hero-content h1 {
+    font-size: 2.4rem;
+    margin: 0 0 0.3rem;
+    font-weight: 700;
+}
+.hero-content h1 .highlight { color: var(--accent-color); }
+.tagline {
+    font-size: 1.1rem;
+    margin: 0;
+    color: var(--primary-color);
+}
+.affiliation {
+    margin: 0.2rem 0 0;
+    font-size: 1rem;
+    color: var(--muted-color);
+}
+.affiliation a {
+    text-decoration: none;
+}
+.affiliation a:hover {
+    text-decoration: underline;
+}
+#typed-text {
+    color: var(--accent-color);
+    border-right: 2px solid var(--accent-color);
+    padding-right: 2px;
+    display: inline-block;
+    min-width: 240px;
+    animation: blinkCursor 0.8s steps(1) infinite;
+}
+@keyframes blinkCursor {
+    0%, 50% { border-color: var(--accent-color); }
+    51%, 100% { border-color: transparent; }
+}
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.9rem;
+}
+.social-icons a img {
+    width: 22px;
+    height: 22px;
+    opacity: 0.65;
+    transition: opacity 0.2s ease;
+}
+.social-icons a img:hover { opacity: 1; }
+
+/* publications page slim header (no hero) */
+.page-header { background: transparent; }
+
+/* ---------- Sections ---------- */
+section { padding: var(--section-padding) 0; }
+section h2 {
+    font-size: 1.7rem;
+    margin: 0 0 0.8rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+section h3 {
+    font-size: 1.15rem;
+    color: var(--primary-color);
+    margin: 0 0 0.4rem;
+}
+.section-intro {
+    color: var(--muted-color);
+    margin: 0 0 1.5rem;
+    max-width: 720px;
+}
+.note {
+    color: var(--muted-color);
+    font-size: 0.92rem;
+}
+
+.about-section { background-color: var(--light-bg); }
+.about-section p {
+    max-width: 720px;
+    font-size: 1.02rem;
+    margin: 0 0 0.9rem;
+}
+
+/* ---------- Research topics ---------- */
+/* collapsible topics (using native <details>/<summary>) */
+.research-section .topic {
+    border-top: 1px solid var(--rule);
+}
+.research-section .topic:first-of-type {
+    border-top: none;
+}
+.research-section .topic > summary {
+    list-style: none;            /* hide default marker */
+    cursor: pointer;
+    padding: 1rem 1.8rem 1rem 0;
+    font-family: var(--font-head);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    position: relative;
+    user-select: none;
+}
+.research-section .topic > summary::-webkit-details-marker { display: none; }
+.research-section .topic > summary::after {
+    content: "+";
+    position: absolute;
+    right: 0.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    color: var(--muted-color);
+    transition: transform 0.2s ease;
+}
+.research-section .topic[open] > summary::after {
+    content: "−";
+}
+.research-section .topic > summary:hover {
+    color: var(--accent-color);
+}
+.research-section .topic[open] > summary {
+    color: var(--accent-color);
+}
+.research-section .topic > p {
+    margin: 0 0 1.1rem;
+    max-width: 720px;
+}
+
+/* ---------- Selected publications (curated list on home) ---------- */
+.selected-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.selected-item {
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--rule);
+}
+.selected-item:first-child { border-top: none; }
+.selected-item h3 {
+    font-size: 1.05rem;
+    margin: 0 0 0.25rem;
+    font-weight: 600;
+}
+.selected-item .venue {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--muted-color);
+}
+.selected-item .pub-authors {
+    margin: 0.15rem 0 0;
+    font-size: 0.9rem;
+    color: var(--muted-color);
+}
+
+/* ---------- Background timeline ---------- */
+.education-section { background-color: #ffffff; }
+.subhead {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted-color);
+    margin: 1.2rem 0 0.6rem;
+    font-weight: 600;
+}
+.timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.5rem;
+}
+.timeline li {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.98rem;
+}
+.timeline li:first-child { border-top: none; }
+.timeline .date {
+    flex: 0 0 130px;
+    color: var(--muted-color);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.93rem;
+}
+.timeline .role { flex: 1; }
+
+/* ---------- Publications page (auto-rendered) ---------- */
+.publications-section { background-color: #ffffff; }
+.publications-section h1 {
+    font-size: 1.8rem;
+    margin: 0 0 0.5rem;
+    color: var(--primary-color);
+}
+.subhead-section {
+    font-size: 1.2rem;
+    margin: 2rem 0 0.6rem;
+    color: var(--primary-color);
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--rule);
+}
+.publications-section h3 {
+    margin-top: 1.6rem;
+    margin-bottom: 0.4rem;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+}
+.publication-list {
+    margin: 0 0 1rem 1rem;
+    padding-left: 1rem;
+}
+.publication-item {
+    margin-bottom: 0.9rem;
+    line-height: 1.5;
+}
+.publication-item em { font-style: italic; }
+.publication-item a { text-decoration: none; }
+.publication-item a:hover { text-decoration: underline; }
+.pub-authors {
+    margin: 0.1rem 0 0;
+    font-size: 0.93rem;
+    color: var(--muted-color);
+}
+
+/* ---------- Diagnostics / warnings ---------- */
+.warning { color: #b33; font-style: italic; }
+.diagnostics { font-size: 0.85rem; color: var(--muted-color); }
+
+/* ---------- Footer ---------- */
+footer {
+    background: var(--primary-color);
+    color: var(--light-text);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* ---------- Responsive ---------- */
+/* ---------- Tablet & phone ---------- */
+@media screen and (max-width: 768px) {
+    .hero-content h1 { font-size: 1.7rem; }
+    .tagline { font-size: 1rem; }
+    #typed-text { min-width: 140px; }
+    section { padding: 36px 0; }
+    section h2 { font-size: 1.45rem; }
+
+    .hero-top { gap: 1rem; }
+    .profile-pic-wrap { width: 120px; height: 160px; flex: 0 0 120px; }
+
+    .nav-toggle { display: inline-block; }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        background: #fff;
+        padding: 8px 0;
+        position: absolute;
+        right: 10px;
+        top: 56px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border-radius: 6px;
+        min-width: 220px;
+    }
+    .nav-links.open { display: flex; }
+    /* bigger tap targets for nav links inside the dropdown */
+    .nav-links li { width: 100%; }
+    .nav-links a {
+        display: block;
+        padding: 12px 18px;
+        font-size: 1rem;
+    }
+
+    /* bigger tap targets for social icons */
+    .social-icons { gap: 0.4rem; }
+    .social-icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .timeline li { flex-direction: column; gap: 0.1rem; padding: 0.6rem 0; }
+    .timeline .date { flex: none; }
+
+    /* prevent long titles / urls from overflowing */
+    .publication-item,
+    .selected-item h3 {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    /* publication list a touch less indented on mobile */
+    .publication-list {
+        margin: 0 0 1rem 0;
+        padding-left: 1.2rem;
+    }
+}
+
+/* ---------- Very small phones ---------- */
+@media screen and (max-width: 480px) {
+    body { padding-top: 52px; }
+    .container { width: 92%; }
+    .hero-content h1 { font-size: 1.45rem; }
+    .tagline { font-size: 0.95rem; }
+    #typed-text { min-width: 110px; }
+    .profile-pic-wrap { width: 96px; height: 128px; flex: 0 0 96px; }
+    section h2 { font-size: 1.3rem; }
+    .selected-item h3 { font-size: 1rem; }
+    .research-section .topic > summary { font-size: 1rem; }
+    .nav-links { top: 52px; }
+}
+
