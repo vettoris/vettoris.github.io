@@ -14,7 +14,7 @@ Visit http://localhost:8000/. Serve over HTTP rather than opening the files dire
 
 - Edit `index.html` for the biography, research and background.
 - Edit `data/biblio.bib` to add or update publications. Entries are sorted by year. Use `title`, `author`, `journal` or `booktitle`, `year`, and `doi` or `url`.
-- The selected papers at the top of `publications.html` are curated manually.
+- A manually curated selection is commented out in `publications.html` and can be restored if wanted.
 - Edit the `typedPhrases` array in `js/site.js` to change the hero text.
 - The hero portrait is `images/sofie-vettori.jpg`, sourced from Sofie's ETH profile. To replace it, update that file or its path in `index.html`.
 
