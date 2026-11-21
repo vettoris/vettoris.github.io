@@ -458,4 +458,4 @@ footer {
 
 .timeline .institution-icon-cambridge { width: 85px; height: 48px; }
 
-.timeline .institution-icon-msca { width: 75px; height: 48px; }
+.timeline .institution-icon-msca { width: 58px; height: 48px; transform: scale(1.35); transform-origin: center; }
