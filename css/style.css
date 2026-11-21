@@ -446,12 +446,16 @@ footer {
 .expand-topics[hidden] { display: none; }
 
 /* Institution marks have their own column in the background timeline. */
-.timeline li { display: grid; grid-template-columns: 48px 130px minmax(0, 1fr); gap: .9rem; align-items: center; padding: .8rem 0; }
+.timeline li { display: grid; grid-template-columns: 85px 130px minmax(0, 1fr); gap: .9rem; align-items: center; padding: .8rem 0; }
 .timeline .institution-icon { display: block; width: 48px; height: 48px; object-fit: contain; border-radius: 4px; }
 .timeline .institution-icon-ku { background: #07517a; padding: 4px; }
 .timeline .date, .timeline .role { min-width: 0; }
 @media (max-width: 600px) {
-    .timeline li { grid-template-columns: 42px minmax(0, 1fr); column-gap: .8rem; row-gap: .1rem; align-items: start; }
+    .timeline li { grid-template-columns: 85px minmax(0, 1fr); column-gap: .8rem; row-gap: .1rem; align-items: start; }
     .timeline .institution-icon { width: 42px; height: 42px; grid-column: 1; grid-row: 1 / span 2; }
     .timeline .date, .timeline .role { grid-column: 2; }
 }
+
+.timeline .institution-icon-cambridge { width: 85px; height: 48px; }
+
+.timeline .institution-icon-msca { width: 75px; height: 48px; }
